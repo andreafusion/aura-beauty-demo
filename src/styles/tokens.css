@@ -1,0 +1,24 @@
+:root {
+  /* 🎨 Colores — Paleta A (Aura Beauty) */
+  --color-bg: #f6f3f1; /* Ivory suave */
+  --color-surface: #ffffff;
+  --color-accent: #d9a5a5; /* Rose empolvado */
+  --color-text: #1c1c1c; /* Ink */
+  --color-muted: #6b6b6b;
+  --color-border: #ece7e4;
+
+  /* 🔤 Tipografía */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* 📐 Espaciado */
+  --space-section: 80px;
+  --space-section-mobile: 56px;
+
+  /* 🧱 Layout */
+  --container-width: 1120px;
+  --radius: 12px;
+
+  /* 🌫 Sombras suaves */
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
