@@ -1,0 +1,52 @@
+---
+import { content } from "../data/content.js";
+const location = content.location;
+const waLink = content.hero.primaryCta.href;
+---
+
+<section id="ubicacion" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{location.title}</h2>
+      <p>{location.subtitle}</p>
+    </div>
+
+    <div class="location-grid">
+      <div class="location-info">
+        <div class="location-card">
+          <h3>Dirección</h3>
+          <p>{location.address}</p>
+        </div>
+
+        <div class="location-card">
+          <h3>Horario</h3>
+          <div class="schedule">
+            {location.schedule.map((s) => (
+              <div class="schedule-item">
+                <span>{s.day}</span>
+                <span>{s.hours}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <a
+          class="btn btn-primary"
+          href={waLink}
+          target="_blank"
+          rel="noopener"
+        >
+          Reservar cita
+        </a>
+      </div>
+
+      <div class="map" aria-label="Mapa">
+        <iframe
+          src={location.mapEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
