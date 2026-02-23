@@ -1,0 +1,21 @@
+---
+import { content } from "../data/content.js";
+const gallery = content.gallery;
+---
+
+<section id="galeria" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{gallery.title}</h2>
+      <p>{gallery.subtitle}</p>
+    </div>
+
+    <div class="gallery-grid" aria-label="Galería de trabajos">
+      {gallery.items.map((img) => (
+        <figure class="gallery-item">
+          <img src={img.src} alt={img.alt} loading="lazy" />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import { content } from "../data/content.js";
+const services = content.services;
+const waLink = content.hero.primaryCta.href;
+
+// Para añadir un texto específico por servicio sin romper el enlace base:
+const buildWhatsAppLink = (serviceName: string) => {
+  const text = `Hola! Quiero reservar: ${serviceName} 💕`;
+  // Si tu waLink ya trae ?text=..., lo reemplazamos por el del servicio
+  const base = waLink.split("?")[0];
+  return `${base}?text=${encodeURIComponent(text)}`;
+};
+---
+
+<section id="servicios" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{services.title}</h2>
+      <p>{services.subtitle}</p>
+    </div>
+
+    <div class="card-grid" role="list">
+      {services.items.map((s) => (
+        <article class="card service-card" role="listitem">
+          <div class="service-top">
+            <div class="service-name">{s.name}</div>
+            <div class="service-price">{s.fromPrice}</div>
+          </div>
+
+          <p class="service-desc">{s.description}</p>
+
+          <div class="service-actions">
+            <a
+              class="btn btn-primary btn-small"
+              href={buildWhatsAppLink(s.name)}
+              target="_blank"
+              rel="noopener"
+            >
+              Reservar
+            </a>
+
+            <a class="btn btn-secondary btn-small" href="#ubicacion">
+              Ver ubicación
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,31 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Gallery from "../components/Gallery.astro";
 ---
 
 <BaseLayout>
   <Hero />
-
-  <!-- Placeholder mínimo para que el botón "Ver servicios" tenga destino -->
-  <section id="servicios" class="section">
-    <div class="container">
-      <h2>Servicios estrella</h2>
-      <p style="margin-top: 10px;">(En la Parte 5 montamos esta sección completa)</p>
-    </div>
-  </section>
-
-  <!-- Placeholder para el menú -->
-  <section id="galeria" class="section">
-    <div class="container">
-      <h2>Galería</h2>
-      <p style="margin-top: 10px;">(La construiremos después, por ahora es un ancla)</p>
-    </div>
-  </section>
+  <Services />
+  <Gallery />
 
   <section id="ubicacion" class="section">
     <div class="container">
       <h2>Ubicación</h2>
-      <p style="margin-top: 10px;">(La construiremos después, por ahora es un ancla)</p>
+      <p style="margin-top: 10px;">(La construiremos en la Parte 7)</p>
     </div>
   </section>
 </BaseLayout>
