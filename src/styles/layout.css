@@ -1,0 +1,50 @@
+/* Layout global de secciones */
+.section {
+  padding: var(--space-section) 0;
+}
+
+/* Fix: con navbar sticky, los anchor links quedan tapados */
+section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-section-mobile) 0;
+  }
+}
+
+/* Titulares reutilizables */
+.section-head {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.section-head p {
+  max-width: 60ch;
+  font-size: 16px;
+}
+
+/* Grid genérico de cards (reutilizable) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.card-grid > .card {
+  grid-column: span 6;
+}
+
+@media (max-width: 900px) {
+  .card-grid > .card {
+    grid-column: span 12;
+  }
+}
