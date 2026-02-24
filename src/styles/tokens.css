@@ -1,9 +1,10 @@
 :root {
-  /* 🎨 Colores — Paleta A (Aura Beauty) */
-  --color-bg: #f6f3f1; /* Ivory suave */
+  /* 🎨 Colores */
+  --color-bg: #f6f3f1;
+  --color-bg-alpha: rgba(246, 243, 241, 0.88); /* para navbar con blur */
   --color-surface: #ffffff;
-  --color-accent: #d9a5a5; /* Rose empolvado */
-  --color-text: #1c1c1c; /* Ink */
+  --color-accent: #d9a5a5;
+  --color-text: #1c1c1c;
   --color-muted: #6b6b6b;
   --color-border: #ece7e4;
 
@@ -17,8 +18,15 @@
 
   /* 🧱 Layout */
   --container-width: 1120px;
+  --nav-height: 64px; /* referencia única para navbar + scroll-margin */
   --radius: 12px;
 
-  /* 🌫 Sombras suaves */
+  /* Navbar */
+  --nav-height: 64px;
+
+  /* Fondo translúcido del navbar */
+  --color-bg-alpha: rgba(246, 243, 241, 0.88);
+
+  /* 🌫 Sombras */
   --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.05);
 }

@@ -10,11 +10,25 @@ const gallery = content.gallery;
       <p>{gallery.subtitle}</p>
     </div>
 
-    <div class="gallery-grid" aria-label="Galería de trabajos">
+    <!--
+      Fix: <figure> sin <figcaption> es semánticamente incompleto.
+      Cambiado a <div> — la info accesible ya está en el alt de la imagen.
+      
+      aria-labelledby apunta al h2 de la sección en lugar de aria-label
+      redundante en el grid.
+    -->
+    <div class="gallery-grid">
       {gallery.items.map((img) => (
-        <figure class="gallery-item">
-          <img src={img.src} alt={img.alt} loading="lazy" />
-        </figure>
+        <div class="gallery-item">
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="500"
+          />
+        </div>
       ))}
     </div>
   </div>

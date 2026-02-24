@@ -4,6 +4,11 @@ export const content = {
     city: "Valencia",
   },
 
+  // ✅ Campo dedicado para el número de WhatsApp
+  // Antes estaba acoplado a hero.primaryCta.href y lo usaban
+  // Navbar, Services y Location por separado.
+  whatsapp: "https://wa.me/34600000000",
+
   hero: {
     headline: "Estética en Valencia pensada para que te sientas increíble",
     subheadline:
@@ -11,16 +16,15 @@ export const content = {
     badges: ["Reserva fácil", "Cuidado real", "Resultados visibles"],
     primaryCta: {
       label: "Reservar por WhatsApp",
-      // Cambia el número cuando lo uses con un cliente
       href: "https://wa.me/34600000000",
     },
     secondaryCta: { label: "Ver servicios", href: "#servicios" },
-    // Usa una imagen bonita y general de estética
     image: {
       src: "/images/hero-estetica.webp",
       alt: "Aura Beauty - Estética en Valencia",
     },
   },
+
   services: {
     title: "Servicios estrella",
     subtitle:
@@ -48,6 +52,7 @@ export const content = {
       },
     ],
   },
+
   gallery: {
     title: "Resultados que hablan solos",
     subtitle: "Una selección de trabajos y detalles. Aquí manda el acabado.",
@@ -60,6 +65,7 @@ export const content = {
       { src: "/images/gallery-06.webp", alt: "Resultado estética" },
     ],
   },
+
   location: {
     title: "Dónde estamos",
     subtitle: "Cita fácil, trato cercano y ubicación cómoda.",

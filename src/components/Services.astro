@@ -1,14 +1,11 @@
 ---
 import { content } from "../data/content.js";
 const services = content.services;
-const waLink = content.hero.primaryCta.href;
+const waBase = content.whatsapp.split("?")[0];
 
-// Para añadir un texto específico por servicio sin romper el enlace base:
 const buildWhatsAppLink = (serviceName: string) => {
   const text = `Hola! Quiero reservar: ${serviceName} 💕`;
-  // Si tu waLink ya trae ?text=..., lo reemplazamos por el del servicio
-  const base = waLink.split("?")[0];
-  return `${base}?text=${encodeURIComponent(text)}`;
+  return `${waBase}?text=${encodeURIComponent(text)}`;
 };
 ---
 
@@ -19,28 +16,34 @@ const buildWhatsAppLink = (serviceName: string) => {
       <p>{services.subtitle}</p>
     </div>
 
-    <div class="card-grid" role="list">
+    <!--
+      Fix semántico: eliminado role="list/listitem" en article.
+      Si se quisiera lista semántica, usar <ul>/<li>.
+      Aquí usamos card-grid con articles sin roles extra.
+    -->
+    <div class="card-grid">
       {services.items.map((s) => (
-        <article class="card service-card" role="listitem">
+        <article class="card service-card">
           <div class="service-top">
-            <div class="service-name">{s.name}</div>
-            <div class="service-price">{s.fromPrice}</div>
+            <h3 class="service-name">{s.name}</h3>
+            <span class="service-price">{s.fromPrice}</span>
           </div>
 
           <p class="service-desc">{s.description}</p>
 
           <div class="service-actions">
+            <!--
+              Eliminado botón "Ver ubicación" de cada card.
+              Era ruido visual y semánticamente no pertenece a cada servicio.
+              Si se necesita, va en una sección CTA global.
+            -->
             <a
               class="btn btn-primary btn-small"
               href={buildWhatsAppLink(s.name)}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
-              Reservar
-            </a>
-
-            <a class="btn btn-secondary btn-small" href="#ubicacion">
-              Ver ubicación
+              Reservar este servicio
             </a>
           </div>
         </article>

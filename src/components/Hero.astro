@@ -5,124 +5,160 @@ const hero = content.hero;
 
 <style>
   .hero {
-  padding-top: 72px; /* espacio bajo navbar */
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.kicker {
-  display: inline-block;
-  font-size: 13px;
-  color: var(--color-muted);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  padding: 8px 12px;
-  border-radius: 999px;
-}
-h1 {
-  font-size: clamp(40px, 3.2vw, 52px);
-  line-height: 1.05;
-  margin-top: 16px;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-}
-
-.subheadline {
-  margin-top: 14px;
-  font-size: 16px;
-  max-width: 52ch;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 22px;
-}
-
-.card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: calc(var(--radius) + 4px);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
-}
-
-.imageWrap {
-  aspect-ratio: 3 / 4;
-  max-width: 420px; /* controla tamaño visual */
-  margin-left: auto; /* la empuja hacia la derecha */
-}
-
-.imageWrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.imageCaption {
-  padding: 14px 16px 16px;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-muted);
-  font-size: 13px;
-}
-
-/* ✅ MÓVIL */
-@media (max-width: 900px) {
-  .hero {
-    padding-top: 24px;
+    /* padding-top = altura de nav para que no quede pegado */
+    padding-top: 16px;
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 48px;
+    align-items: center;
   }
 
-  /* Tipografía más “hero”, sin verse mini */
+  .kicker {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 7px 12px;
+    border-radius: 999px;
+  }
+
   h1 {
-    font-size: clamp(30px, 6.4vw, 36px);
-    line-height: 1.08;
+    font-size: clamp(36px, 3.4vw, 52px);
+    line-height: 1.05;
+    margin-top: 14px;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
   }
 
   .subheadline {
+    margin-top: 14px;
     font-size: 16px;
+    max-width: 60ch;
+    line-height: 1.6;
   }
 
-  /* Botones a ancho completo para que se sienta pro en móvil */
   .actions {
-    flex-direction: column;
-    align-items: stretch;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 22px;
   }
 
-  .actions a {
-    width: 100%;
+  /* Renombrado de .card a .hero-card para no colisionar con .card global */
+  .hero-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--radius) + 4px);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
   }
 
-  /* Imagen más protagonista y menos “foto pequeña” */
   .imageWrap {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 3 / 4;
+    max-width: 420px;
+    margin-left: auto;
+    .imageWrap {
+      aspect-ratio: 3 / 4;
+      max-width: 420px;
+      margin-left: auto;
+      border-radius: calc(var(--radius) + 8px);
+      overflow: hidden;
+    }
   }
 
-  /* Chips más compactos */
+  .imageWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .imageCaption {
+    padding: 12px 16px 14px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.4;
+
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+
+  /* Chips — aquí es el único lugar donde se usan, así que viven aquí */
   .chips {
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+
+    justify-content: flex-start;
   }
 
   .chip {
-    font-size: 12.5px;
-    padding: 7px 10px;
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(217, 165, 165, 0.55); /* rosita suave */
+    color: var(--color-text);
+    font-size: 13px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   }
-}
+  @media (max-width: 1100px) {
+    .chips {
+      justify-content: center;
+    }
+  }
+  /* ── Móvil ── */
+  @media (max-width: 900px) {
+    .hero {
+      padding-top: 8px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 7vw, 38px);
+      line-height: 1.08;
+    }
+
+    /* Imagen apaisada en móvil, más protagonista */
+    .imageWrap {
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+      margin-left: 0;
+    }
+
+    /* Botones a ancho completo en móvil */
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .actions a {
+      text-align: center;
+    }
+
+    .chip {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
 </style>
 
 <section class="section hero">
   <div class="container">
     <div class="grid">
+      <!-- Columna de texto -->
       <div>
         <span class="kicker">{content.brand.name} · {content.brand.city}</span>
 
@@ -130,29 +166,39 @@ h1 {
         <p class="subheadline">{hero.subheadline}</p>
 
         <div class="actions">
-          <a class="btn btn-primary" href={hero.primaryCta.href} target="_blank" rel="noopener">
+          <a
+            class="btn btn-primary"
+            href={hero.primaryCta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {hero.primaryCta.label}
           </a>
-
           <a class="btn btn-secondary" href={hero.secondaryCta.href}>
             {hero.secondaryCta.label}
           </a>
         </div>
 
-        <div class="chips" aria-label="Beneficios rápidos">
-          {hero.badges.map((b) => (
-            <span class="chip">{b}</span>
-          ))}
+        <div class="chips" aria-label="Puntos clave">
+          {hero.badges.map((b) => <span class="chip">{b}</span>)}
         </div>
       </div>
 
-      <div class="card" aria-label="Imagen principal">
+      <!-- Columna de imagen -->
+      <div class="hero-card" aria-hidden="true">
         <div class="imageWrap">
-          <img src={hero.image.src} alt={hero.image.alt} loading="eager" />
+          <img
+            src={hero.image.src}
+            alt={hero.image.alt}
+            loading="eager"
+            decoding="sync"
+            width="420"
+            height="560"
+          />
         </div>
-        <div class="imageCaption">
+        <p class="imageCaption">
           Reserva rápida, atención cercana, resultados que se notan.
-        </div>
+        </p>
       </div>
     </div>
   </div>

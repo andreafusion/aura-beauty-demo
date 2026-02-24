@@ -3,26 +3,42 @@ import "../styles/base.css";
 import "../styles/sections.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Aura Beauty — Estética en Valencia",
+  description = "Manicura, cejas, pestañas y tratamientos faciales en Valencia. Reserva rápida por WhatsApp.",
+} = Astro.props;
 ---
 
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aura Beauty — Demo Estética</title>
+    <meta name="description" content={description} />
+    <title>{title}</title>
 
-    <!-- Tipografías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Tipografías — dos preconnects requeridos por Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Slot para meta tags adicionales por página (og, canonical, etc.) -->
+    <slot name="head" />
   </head>
 
   <body>
     <Navbar />
-
     <main>
       <slot />
     </main>
-
     <Footer />
   </body>
 </html>

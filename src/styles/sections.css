@@ -1,6 +1,13 @@
-/* Secciones */
+/* ─────────────────────────────────────────
+   SECCIONES
+───────────────────────────────────────── */
 .section {
   padding: var(--space-section) 0;
+}
+
+/* Fix: con navbar sticky, los anchor links quedan tapados sin esto */
+section[id] {
+  scroll-margin-top: var(--nav-height);
 }
 
 @media (max-width: 768px) {
@@ -9,31 +16,40 @@
   }
 }
 
-/* Botones */
+/* ─────────────────────────────────────────
+   BOTONES
+───────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px 18px;
+  gap: 8px;
+  padding: 12px 20px;
   border-radius: 999px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  font-family: var(--font-body);
   border: 1px solid transparent;
+  cursor: pointer;
   transition:
     transform 0.12s ease,
-    opacity 0.12s ease;
+    opacity 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 .btn:hover {
   transform: translateY(-1px);
-  opacity: 0.96;
+  opacity: 0.92;
 }
 
 .btn-primary {
   background: var(--color-accent);
   color: #fff;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(217, 165, 165, 0.4);
 }
 
 .btn-secondary {
@@ -42,12 +58,18 @@
   color: var(--color-text);
 }
 
-/* Chips / badges */
+.btn-small {
+  padding: 9px 14px;
+  font-size: 13px;
+}
+
+/* Chips / badges (Hero) */
 .chips {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 16px;
+  align-items: center;
 }
 
 .chip {
@@ -59,25 +81,32 @@
   border: 1px solid var(--color-border);
   color: var(--color-text);
   font-size: 13px;
+  line-height: 1;
 }
-/* Titulares de sección */
+/* ─────────────────────────────────────────
+   TITULARES DE SECCIÓN
+───────────────────────────────────────── */
 .section-head {
   display: grid;
   gap: 10px;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
 }
 
 .section-head h2 {
-  font-size: 28px;
+  /* Era 28px fijo — demasiado pequeño en desktop con Playfair */
+  font-size: clamp(28px, 3vw, 36px);
   letter-spacing: -0.01em;
   color: var(--color-text);
 }
 
 .section-head p {
-  max-width: 70ch;
+  max-width: 60ch;
+  font-size: 16px;
 }
 
-/* Grid de cards */
+/* ─────────────────────────────────────────
+   GRID DE CARDS
+───────────────────────────────────────── */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -93,13 +122,16 @@
   padding: 18px;
 }
 
+/* 1 columna en móvil */
 @media (max-width: 900px) {
   .card {
     grid-column: span 12;
   }
 }
 
-/* Card de servicio */
+/* ─────────────────────────────────────────
+   CARD DE SERVICIO
+───────────────────────────────────────── */
 .service-card {
   display: grid;
   gap: 10px;
@@ -124,35 +156,43 @@
   color: var(--color-muted);
   border: 1px solid var(--color-border);
   background: var(--color-bg);
-  padding: 6px 10px;
+  padding: 5px 10px;
   border-radius: 999px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .service-desc {
   color: var(--color-muted);
   font-size: 14px;
+  line-height: 1.55;
 }
 
 .service-actions {
-  margin-top: 6px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  margin-top: 8px;
 }
 
-.btn-small {
-  padding: 10px 14px;
-  font-size: 13px;
-}
-/* Galería responsive fluida */
+/* ─────────────────────────────────────────
+   GALERÍA
+   minmax reducido a 180px → 2 cols en móviles de 360px+
+───────────────────────────────────────── */
+/* Galería 3 / 2 / 1 */
 .gallery-grid {
   display: grid;
-  gap: 14px;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 
-  /* 💡 Esto es la magia:
-     crea columnas automáticas que nunca bajan de 260px */
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+@media (max-width: 980px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .gallery-item {
@@ -165,12 +205,19 @@
 
 .gallery-item img {
   width: 100%;
-  height: 100%;
   display: block;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
-/* Ubicación */
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+/* ─────────────────────────────────────────
+   UBICACIÓN
+───────────────────────────────────────── */
 .location-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -181,6 +228,7 @@
   grid-column: span 5;
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 
 .location-card {
@@ -192,8 +240,10 @@
 }
 
 .location-card h3 {
-  font-size: 18px;
-  margin-bottom: 6px;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  color: var(--color-text);
+  margin-bottom: 8px;
 }
 
 .schedule {
@@ -204,8 +254,14 @@
 .schedule-item {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   font-size: 14px;
   color: var(--color-muted);
+}
+
+.schedule-item span:last-child {
+  font-weight: 500;
+  color: var(--color-text);
 }
 
 .map {
@@ -214,18 +270,28 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-soft);
+  min-height: 340px;
 }
 
 .map iframe {
   width: 100%;
   height: 100%;
-  min-height: 300px;
+  min-height: 340px;
   border: 0;
+  display: block;
 }
 
 @media (max-width: 900px) {
   .location-info,
   .map {
     grid-column: span 12;
+  }
+
+  /* En móvil el mapa va segundo */
+  .location-info {
+    order: 1;
+  }
+  .map {
+    order: 2;
   }
 }

@@ -1,7 +1,8 @@
 ---
 import { content } from "../data/content.js";
 const location = content.location;
-const waLink = content.hero.primaryCta.href;
+// Fix: ahora usa el campo dedicado en lugar de acoplarse a hero.primaryCta
+const waLink = content.whatsapp;
 ---
 
 <section id="ubicacion" class="section">
@@ -34,17 +35,20 @@ const waLink = content.hero.primaryCta.href;
           class="btn btn-primary"
           href={waLink}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
-          Reservar cita
+          Reservar cita por WhatsApp
         </a>
       </div>
 
-      <div class="map" aria-label="Mapa">
+      <div class="map">
+        <!-- Fix: añadido title para accesibilidad (requerimiento WCAG) -->
         <iframe
           src={location.mapEmbed}
+          title="Mapa con la ubicación de Aura Beauty"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
         ></iframe>
       </div>
     </div>

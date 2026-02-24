@@ -1,6 +1,7 @@
 ---
 import { content } from "../data/content.js";
-const waLink = content.hero.primaryCta.href;
+const waLink = content.whatsapp;
+const brandName = content.brand.name;
 ---
 
 <style>
@@ -8,8 +9,10 @@ const waLink = content.hero.primaryCta.href;
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(246,243,241,0.85);
-    backdrop-filter: blur(10px);
+    /* Fix: usamos la variable en lugar del color hardcodeado */
+    background: var(--color-bg-alpha);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -17,47 +20,261 @@ const waLink = content.hero.primaryCta.href;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: var(--nav-height);
+    gap: 16px;
   }
 
   .logo {
     font-family: var(--font-heading);
     font-size: 20px;
-  }
-
-  nav a {
-    margin: 0 12px;
-    text-decoration: none;
+    font-weight: 600;
     color: var(--color-text);
-    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
   }
 
-  .cta {
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  /* CTA de reserva — reutiliza .btn pero definido aquí para no importar sections */
+  .nav-cta {
     background: var(--color-accent);
+    color: #fff;
     padding: 8px 16px;
     border-radius: 999px;
-    color: white;
     text-decoration: none;
     font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.12s ease, transform 0.12s ease;
   }
 
+  .nav-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  /* ── Hamburger ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .hamburger:hover {
+    background: var(--color-surface);
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* Animación open */
+  .hamburger.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Menú móvil ── */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0 16px;
+    border-top: 1px solid var(--color-border);
+    position: relative;
+    z-index: 60;
+  }
+
+  .mobile-menu.is-open {
+    display: flex;
+  }
+
+  .mobile-menu a {
+    padding: 11px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.12s ease;
+  }
+
+  .mobile-menu a:hover {
+    background: var(--color-surface);
+  }
+
+  .mobile-menu .mobile-cta {
+    margin-top: 6px;
+    text-align: center;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 999px;
+  }
+
+  .mobile-menu .mobile-cta:hover {
+    opacity: 0.9;
+  }
+
+  /* Overlay oscuro/borroso al abrir menú */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 18, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 40; /* por debajo del header (50) y por encima del contenido */
+}
+
+.menu-overlay.is-open {
+  display: block;
+}
+  /* ── Responsive ── */
   @media (max-width: 720px) {
-    nav {
+    .nav-links {
       display: none;
+    }
+      .nav-links li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+    .nav-cta {
+      display: none; /* se muestra dentro del menú móvil */
+    }
+
+    .hamburger {
+      display: flex;
     }
   }
 </style>
 
 <header>
-  <div class="container nav">
-    <div class="logo">Aura Beauty</div>
+  <div class="container">
+    <div class="nav">
+      <a class="logo" href="/">{brandName}</a>
 
-    <nav>
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links" role="list">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+        </ul>
+      </nav>
+
+      <a class="nav-cta" href={waLink} target="_blank" rel="noopener noreferrer">
+        Reservar
+      </a>
+
+      <button
+        class="hamburger"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Menú móvil desplegable -->
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Menú móvil" hidden>
       <a href="#servicios">Servicios</a>
       <a href="#galeria">Galería</a>
       <a href="#ubicacion">Ubicación</a>
-    </nav>
-
-    <a class="cta" href={waLink} target="_blank" rel="noopener">Reservar</a>
+      <a class="mobile-cta" href={waLink} target="_blank" rel="noopener noreferrer">
+        Reservar por WhatsApp
+      </a>
+    </nav>  
   </div>
 </header>
+<div class="menu-overlay" hidden></div>
+
+<script>
+  const btn = document.querySelector(".hamburger");
+  const menu = document.querySelector("#mobile-menu");
+  const overlay = document.querySelector(".menu-overlay");
+
+  if (btn && menu) {
+    const setOpen = (open: boolean) => {
+      btn.classList.toggle("is-open", open);
+      menu.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      menu.toggleAttribute("hidden", !open);
+
+      overlay?.classList.toggle("is-open", open);
+      overlay?.toggleAttribute("hidden", !open);
+    };
+
+    // Estado inicial coherente con "hidden"
+    setOpen(false);
+
+    btn.addEventListener("click", () => {
+      const open = !btn.classList.contains("is-open");
+      setOpen(open);
+    });
+
+    // Cerrar al clicar un enlace
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    // Cerrar con ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+        // Cerrar al clicar fuera
+    document.addEventListener("click", (e) => {
+      const target = e.target as Node;
+      const clickedInside =
+        btn.contains(target) || menu.contains(target);
+      if (!clickedInside) setOpen(false);
+    });
+  }
+</script>
