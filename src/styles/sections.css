@@ -295,3 +295,59 @@ section[id] {
     order: 2;
   }
 }
+/* ─────────────────────────────────────────
+   REVIEWS / TESTIMONIOS
+───────────────────────────────────────── */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.review-card {
+  grid-column: span 4;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow-soft);
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+@media (max-width: 980px) {
+  .review-card {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 560px) {
+  .review-card {
+    grid-column: span 12;
+  }
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.review-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.review-stars {
+  display: inline-flex;
+  gap: 2px;
+  font-size: 14px;
+  color: var(--color-accent);
+}
+
+.review-text {
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}

@@ -1,0 +1,29 @@
+---
+import { content } from "../data/content.js";
+const reviews = content.reviews;
+
+const stars = (n: number) => "★★★★★".slice(0, n);
+---
+
+<section id="opiniones" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{reviews.title}</h2>
+      <p>{reviews.subtitle}</p>
+    </div>
+
+    <div class="reviews-grid" aria-label="Testimonios">
+      {reviews.items.map((r) => (
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-name">{r.name}</div>
+            <div class="review-stars" aria-label={`Valoración ${r.rating} de 5`}>
+              {stars(r.rating)}
+            </div>
+          </div>
+          <p class="review-text">“{r.text}”</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
