@@ -22,6 +22,19 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
 
+    <!-- Open Graph (Instagram, WhatsApp, LinkedIn, etc.) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/og-aura-beauty.webp" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter/X preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/og-aura-beauty.webp" />
+    <meta property="og:locale" content="es_ES" />
+    
     <!-- Tipografías — dos preconnects requeridos por Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
