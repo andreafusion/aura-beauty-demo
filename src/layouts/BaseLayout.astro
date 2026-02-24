@@ -8,12 +8,16 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  siteUrl?: string;
 }
 
 const {
   title = "Aura Beauty — Estética en Valencia",
   description = "Manicura, cejas, pestañas y tratamientos faciales en Valencia. Reserva rápida por WhatsApp.",
+  siteUrl = "https://aura-beauty-demo.vercel.app",
 } = Astro.props;
+
+const ogImage = new URL("/images/og-aura-beauty.webp", siteUrl).toString();
 ---
 
 <html lang="es">
@@ -26,15 +30,14 @@ const {
     <!-- Open Graph (Instagram, WhatsApp, LinkedIn, etc.) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/og-aura-beauty.webp" />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
 
     <!-- Twitter/X preview -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/images/og-aura-beauty.webp" />
-    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:image" content={ogImage} />
     
     <!-- Tipografías — dos preconnects requeridos por Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
