@@ -21,12 +21,6 @@
   --nav-height: 64px; /* referencia única para navbar + scroll-margin */
   --radius: 12px;
 
-  /* Navbar */
-  --nav-height: 64px;
-
-  /* Fondo translúcido del navbar */
-  --color-bg-alpha: rgba(246, 243, 241, 0.88);
-
   /* 🌫 Sombras */
   --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
